@@ -4,16 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace Runner.Character
 {
+    [RequireComponent(typeof(InputControlller), typeof(MovementController), typeof(AnimationController))]
     public class CharacterManager : MonoBehaviour
     {
         #region Game Start
         private bool isGameStarted = false;
         #endregion
-        [SerializeField] private InputControlller inputControlller;
-        [SerializeField] private MovementController movementController;
+        private InputControlller inputControlller;
+        private MovementController movementController;
 
-        [SerializeField] private float speed = 1;
-        public static Action characterStateChanged;
+        public static event Action characterStateChanged;
 
         [System.ComponentModel.DefaultValue(CharacterState.None)]
         private CharacterState characterState
@@ -31,14 +31,8 @@ namespace Runner.Character
         }
         private void Start()
         {
+            movementController = GetComponent<MovementController>();
+            inputControlller = GetComponent<InputControlller>();
         }
-        void Update()
-        {
-        }
-        private void StartGame()
-        {
-
-        }
-
     }
 }

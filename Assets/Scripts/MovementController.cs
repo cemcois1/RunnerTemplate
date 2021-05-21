@@ -7,8 +7,13 @@ namespace Runner.Character
 {
     public class MovementController : MonoBehaviour
     {
+        [Space]
+        [Header("Speed Variables")]
+        [SerializeField] private float slideSpeed = 1;
+        [SerializeField] private float forwardSpeed = 1;
 
-        [SerializeField] private float speed = 1;
+        [Space]
+        [Header("Bounce Limits")]
         [SerializeField] private float BounceRight = 0;
         [SerializeField] private float BounceLeft = 0;
 
@@ -32,28 +37,41 @@ namespace Runner.Character
         {
             while (true)
             {
-                transform.position += Vector3.forward * Time.deltaTime * speed;
+                transform.position += Vector3.forward * Time.deltaTime * forwardSpeed;
                 yield return null;
             }
         }
         private void MoveXAxis()
         {
-            if (transform.position.x <= BounceRight && transform.position.x >= BounceLeft)
+            switch (inputControlller.inputType)
             {
-                transform.position += inputControlller.DistanceX * Time.deltaTime * Vector3.left;
+                case InputType.TapAndDrag:
+                    if (transform.position.x <= BounceRight && transform.position.x >= BounceLeft)
+                    {
+                        transform.position += inputControlller.DistanceX * Time.deltaTime * Vector3.left;
+                    }
+                    break;
+                case InputType.tapAndDragV2:
+                    transform.position += transform.right * Time.deltaTime * slideSpeed * inputControlller.DistanceX;
+                    break;
+                default:
+                    break;
             }
+            LimitPosition();
+        }
+
+        private void LimitPosition()
+        {
             if (transform.position.x >= BounceRight)
                 transform.position = new Vector3(BounceRight, transform.position.y, transform.position.z);
             if (transform.position.x <= BounceLeft)
                 transform.position = new Vector3(BounceLeft, transform.position.y, transform.position.z);
-
-
         }
+
         private void StopRunning()
         {
             StopCoroutine(Runningcoroutine);
             print("Character Stopped");
-
         }
 
 

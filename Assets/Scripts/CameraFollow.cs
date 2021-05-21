@@ -16,9 +16,9 @@ namespace Runner
         {
             #region Events
             GameManager.LevelEnded += DontFollowPlayer;
-            GameManager.LevelFailed += DontFollowPlayer; 
+            GameManager.LevelFailed += DontFollowPlayer;
             #endregion
-
+            playerPosition = GameObject.FindGameObjectWithTag("Player");
             offset = playerPosition.transform.position - transform.position;
             cameraFollow = StartCoroutine(FollowPlayer());
         }
