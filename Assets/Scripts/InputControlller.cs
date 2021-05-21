@@ -67,44 +67,13 @@ namespace Runner.Character
                     }
                     break;
                 case InputType.tapAndDragV2:
-                    //if (IsInputTakeable)
-                    //{
-                    //    if (Input.GetMouseButtonDown(0))//butona butona basti
-                    //    {
-                    //        startPosition = Input.mousePosition;
-                    //        currentPosition = Input.mousePosition;
-                    //        if (isFirsttime)
-                    //        {
-                    //            GameManager.LevelStarted?.Invoke();
-                    //            isFirsttime = false;
-                    //        }
-                    //    }
-                    //    if (Input.GetMouseButton(0))
-                    //    {
-                    //        currentPosition = Input.mousePosition;
-
-                    //        DistanceX = Mathf.Round(currentPosition.x - startPosition.x);
-                    //    }
-                    //    if (Mathf.Abs(DistanceX) > 0.5f)
-                    //    {
-                    //        OnMousePositionChanged?.Invoke();
-                    //    }
-                    //    if (Input.GetMouseButtonUp(0))
-                    //    {
-                    //        DistanceX = 0;
-                    //    }
-                    //}
-
                     if (IsInputTakeable)
                     {
                         var xDifference = Input.mousePosition.x - currentPosition.x;
                         var xPersentage = (100f * xDifference) / Screen.width;
                         DistanceX = xPersentage;
                         OnMousePositionChanged?.Invoke();
-
-
                     }
-
                     if (Input.GetMouseButton(0))
                     {
                         IsInputTakeable = true;
@@ -119,7 +88,6 @@ namespace Runner.Character
                     {
                         IsInputTakeable = false;
                     }
-
                     break;
                 default:
                     break;

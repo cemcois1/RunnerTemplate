@@ -9,7 +9,7 @@ namespace Runner
         public static Action LevelEnded;
         public static Action LevelFailed;
 
-        
+
         private void Start()
         {
             LevelStarted += OnLevelStarted;

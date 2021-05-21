@@ -9,7 +9,7 @@ namespace Runner
         private Coroutine cameraFollow;
         private Vector3 offset;
         [SerializeField] private float smoothSpeed;
-        [SerializeField] private GameObject playerPosition;
+        private GameObject playerPosition;
 
 
         private void Start()
