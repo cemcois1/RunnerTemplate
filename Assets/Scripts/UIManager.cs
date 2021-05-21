@@ -17,7 +17,7 @@ namespace Runner
         {
             GameManager.LevelStarted = OnLevelStarted;
             GameManager.LevelFailed = OnLevelFailed;
-            GameManager.LevelEnded = OnLevelEnded;
+            GameManager.LevelFinished = OnLevelEnded;
         }
 
 

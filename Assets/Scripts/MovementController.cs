@@ -24,12 +24,12 @@ namespace Runner.Character
         {
             inputControlller = GetComponent<InputControlller>();
             inputControlller.OnMousePositionChanged += MoveXAxis;
-            GameManager.LevelStarted += Move;
-            GameManager.LevelEnded += StopRunning;
+            GameManager.LevelStarted += MoveForward;
+            GameManager.LevelFinished += StopRunning;
             GameManager.LevelFailed += StopRunning;
 
         }
-        public void Move()
+        public void MoveForward()
         {
             Runningcoroutine = StartCoroutine(MoveCoroutine());
         }

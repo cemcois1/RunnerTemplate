@@ -6,7 +6,7 @@ namespace Runner
     public class GameManager : MonoBehaviour
     {
         public static Action LevelStarted;
-        public static Action LevelEnded;
+        public static Action LevelFinished;
         public static Action LevelFailed;
 
 
@@ -25,6 +25,7 @@ namespace Runner
         }
         void StartRunning()
         {
+            print("Running Started");
             //TODO Start Running
         }
 

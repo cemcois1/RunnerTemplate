@@ -15,7 +15,7 @@ namespace Runner
         private void Start()
         {
             #region Events
-            GameManager.LevelEnded += DontFollowPlayer;
+            GameManager.LevelFinished += DontFollowPlayer;
             GameManager.LevelFailed += DontFollowPlayer;
             #endregion
             playerPosition = GameObject.FindGameObjectWithTag("Player");

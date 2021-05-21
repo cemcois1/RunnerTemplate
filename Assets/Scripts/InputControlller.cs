@@ -21,7 +21,7 @@ namespace Runner.Character
         private bool IsInputTakeable = false;
         private void Start()
         {
-            GameManager.LevelEnded += () => this.enabled = false;
+            GameManager.LevelFinished += () => this.enabled = false;
             GameManager.LevelFailed += () => this.enabled = false;
         }
 
@@ -64,31 +64,33 @@ namespace Runner.Character
                             DistanceX = 0;
                             IsInputTakeable = false;
                         }
+                        break;
                     }
-                    break;
                 case InputType.tapAndDragV2:
-                    if (IsInputTakeable)
                     {
-                        var xDifference = Input.mousePosition.x - currentPosition.x;
-                        var xPersentage = (100f * xDifference) / Screen.width;
-                        DistanceX = xPersentage;
-                        OnMousePositionChanged?.Invoke();
-                    }
-                    if (Input.GetMouseButton(0))
-                    {
-                        IsInputTakeable = true;
-                        currentPosition = Input.mousePosition;
-                        if (isFirsttime)
+                        if (IsInputTakeable)
                         {
-                            GameManager.LevelStarted?.Invoke();
-                            isFirsttime = false;
+                            var xDifference = Input.mousePosition.x - currentPosition.x;
+                            var xPersentage = (100f * xDifference) / Screen.width;
+                            DistanceX = xPersentage;
+                            OnMousePositionChanged?.Invoke();
                         }
+                        if (Input.GetMouseButton(0))
+                        {
+                            IsInputTakeable = true;
+                            currentPosition = Input.mousePosition;
+                            if (isFirsttime)
+                            {
+                                GameManager.LevelStarted?.Invoke();
+                                isFirsttime = false;
+                            }
+                        }
+                        if (Input.GetMouseButtonUp(0))
+                        {
+                            IsInputTakeable = false;
+                        }
+                        break;
                     }
-                    if (Input.GetMouseButtonUp(0))
-                    {
-                        IsInputTakeable = false;
-                    }
-                    break;
                 default:
                     break;
             }
