@@ -15,9 +15,9 @@ namespace Runner
         [SerializeField] private GameObject LevelComplated;
         private void Start()
         {
-            GameManager.LevelStarted = OnLevelStarted;
-            GameManager.LevelFailed = OnLevelFailed;
-            GameManager.LevelFinished = OnLevelEnded;
+            GameManager.LevelStarted += OnLevelStarted;
+            GameManager.LevelFailed += OnLevelFailed;
+            GameManager.LevelFinished += OnLevelEnded;
         }
 
 

@@ -16,18 +16,17 @@ namespace Runner.Character
         {
             animator = GetComponent<Animator>();
             GameManager.LevelStarted += OnLevelStarted;
-            CharacterManager.characterStateChanged += OnCharacterStateChanged;
+            CharacterManager.CharacterStateChanged += OnCharacterStateChanged;
         }
-
         private void OnLevelStarted()
         {
             animator.SetTrigger(isRuningHash);
             animator.SetFloat(AnimationspeedHash, animationSpeed);
         }
 
-        private void OnCharacterStateChanged()
+        private void OnCharacterStateChanged(CharacterState State)
         {
-
+            print("TODO CHaracter State Chaned");
         }
     }
 }

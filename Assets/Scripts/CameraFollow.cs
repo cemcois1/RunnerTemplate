@@ -30,7 +30,6 @@ namespace Runner
                 yield return null;
             }
         }
-
         private void DontFollowPlayer()
         {
             StopCoroutine(cameraFollow);

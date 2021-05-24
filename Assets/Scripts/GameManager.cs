@@ -10,7 +10,7 @@ namespace Runner
         public static Action LevelFailed;
 
 
-        private void Start()
+        private void Awake()
         {
             LevelStarted += OnLevelStarted;
             LevelStarted += StartRunning;

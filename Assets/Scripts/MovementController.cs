@@ -33,6 +33,15 @@ namespace Runner.Character
         {
             Runningcoroutine = StartCoroutine(MoveCoroutine());
         }
+        private void StopRunning()
+        {
+            StopCoroutine(Runningcoroutine);
+            print("Character Stopped");
+        }
+        private void deneme()
+        {
+            print("MovementController Test Message ");
+        }
         public IEnumerator MoveCoroutine()
         {
             while (true)
@@ -66,12 +75,6 @@ namespace Runner.Character
                 transform.position = new Vector3(BounceRight, transform.position.y, transform.position.z);
             if (transform.position.x <= BounceLeft)
                 transform.position = new Vector3(BounceLeft, transform.position.y, transform.position.z);
-        }
-
-        private void StopRunning()
-        {
-            StopCoroutine(Runningcoroutine);
-            print("Character Stopped");
         }
 
 

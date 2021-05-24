@@ -12,7 +12,7 @@ namespace Runner.Character
     public class InputControlller : MonoBehaviour
     {
         public InputType inputType;
-        public float DistanceX;
+        [HideInInspector] public float DistanceX;
         public event Action OnMousePositionChanged;
 
         private bool isFirsttime = true;
