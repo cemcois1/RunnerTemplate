@@ -14,9 +14,5 @@ namespace Runner
         {
             GetComponent<ParticleSystem>().Play();
         }
-        void Update()
-        {
-
-        }
     }
 }

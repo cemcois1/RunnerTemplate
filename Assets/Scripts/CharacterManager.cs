@@ -13,7 +13,7 @@ namespace Runner.Character
         private InputControlller inputControlller;
         private MovementController movementController;
 
-        public static event Action<CharacterState> CharacterStateChanged;
+        public static Action<CharacterState> CharacterStateChanged;
 
         [System.ComponentModel.DefaultValue(CharacterState.None)]
         public CharacterState characterState
@@ -32,7 +32,7 @@ namespace Runner.Character
         }
         private void Start()
         {
-            GameManager.LevelStarted += () => characterState = CharacterState.Running;
+            //GameManager.LevelStarted += () => characterState = CharacterState.Running;
             movementController = GetComponent<MovementController>();
             inputControlller = GetComponent<InputControlller>();
         }

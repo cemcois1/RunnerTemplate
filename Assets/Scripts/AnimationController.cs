@@ -8,7 +8,7 @@ namespace Runner.Character
     [RequireComponent(typeof(Animator))]
     public class AnimationController : MonoBehaviour
     {
-        private Animator animator;
+        public Animator animator;
         [SerializeField] private float animationSpeed;
         private int isRuningHash = Animator.StringToHash("isRuning");
         private int AnimationspeedHash = Animator.StringToHash("Speed");
