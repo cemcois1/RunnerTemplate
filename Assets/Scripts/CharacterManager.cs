@@ -1,40 +1,38 @@
-﻿using System;
+﻿using Runner;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace Runner.Character
+[RequireComponent(typeof(InputControlller), typeof(MovementController), typeof(AnimationController))]
+public class CharacterManager : MonoBehaviour
 {
-    [RequireComponent(typeof(InputControlller), typeof(MovementController), typeof(AnimationController))]
-    public class CharacterManager : MonoBehaviour
+    #region Game Start
+    private bool isGameStarted = false;
+    #endregion
+    private InputControlller inputControlller;
+    private MovementController movementController;
+
+    public static Action<CharacterState> CharacterStateChanged;
+    private int i = 0;
+    public CharacterState characterState
     {
-        #region Game Start
-        private bool isGameStarted = false;
-        #endregion
-        private InputControlller inputControlller;
-        private MovementController movementController;
 
-        public static Action<CharacterState> CharacterStateChanged;
-
-        [System.ComponentModel.DefaultValue(CharacterState.None)]
-        public CharacterState characterState
+        get
         {
-
-            get
-            {
-                return characterState;
-            }
-            set
-            {
-                print("Value :" + value);
-                characterState = value;
-                CharacterStateChanged(value);
-            }
+            return characterState;
         }
-        private void Start()
+        set
         {
-            //GameManager.LevelStarted += () => characterState = CharacterState.Running;
-            movementController = GetComponent<MovementController>();
-            inputControlller = GetComponent<InputControlller>();
+            print(i + "Value :" + value);
+            characterState = value;
+            i++;
+            //CharacterStateChanged?.Invoke(value);
         }
+    }
+    private void Start()
+    {
+        GameManager.LevelStarted += () => { print("Start Running"); };
+        movementController = GetComponent<MovementController>();
+        inputControlller = GetComponent<InputControlller>();
     }
 }

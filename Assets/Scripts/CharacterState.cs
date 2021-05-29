@@ -1,10 +1,7 @@
-﻿namespace Runner.Character
+﻿public enum CharacterState
 {
-    public enum CharacterState
-    {
-        None,
-        Running,
-        Dead,
+    None,
+    Running,
+    Dead,
 
-    }
 }

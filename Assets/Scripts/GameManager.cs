@@ -1,34 +1,40 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Runner
+
+public class GameManager : MonoBehaviour
 {
-    public class GameManager : MonoBehaviour
+    public static GameManager instance = null;
+    public static Action LevelStarted;
+    public static Action LevelFinished;
+    public static Action LevelFailed;
+    public static Action PrepareLevel;//todo load New level or 
+
+    private void Awake()
     {
-        public static Action LevelStarted;
-        public static Action LevelFinished;
-        public static Action LevelFailed;
-
-
-        private void Awake()
+        if (instance == null)
         {
-            LevelStarted += OnLevelStarted;
-            LevelStarted += StartRunning;
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
         }
-        void OnLevelComplated()
+        else
         {
-
+            Destroy(this.gameObject);
         }
-        void OnLevelStarted()
-        {
-            //TODO Close StartButton
-        }
-        void StartRunning()
-        {
-            print("Running Started");
-            //TODO Start Running
-        }
+        LevelStarted += OnLevelStarted;
+        LevelStarted += StartRunning;
+    }
+    void OnLevelComplated()
+    {
 
-
+    }
+    void OnLevelStarted()
+    {
+        //TODO Close StartButton
+    }
+    void StartRunning()
+    {
+        print("Running Started");
+        //TODO Start Running
     }
 }

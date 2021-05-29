@@ -1,18 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace Runner
+public class Confetti : MonoBehaviour
 {
-
-    public class Confetti : MonoBehaviour
+    void Start()
     {
-        void Start()
-        {
-            GameManager.LevelFinished += Testmethod;
-        }
-        void Testmethod()
-        {
-            GetComponent<ParticleSystem>().Play();
-        }
+        GameManager.LevelFinished += () => GetComponent<ParticleSystem>().Play();
     }
 }
