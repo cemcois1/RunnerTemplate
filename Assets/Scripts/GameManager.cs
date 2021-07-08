@@ -21,8 +21,16 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+    private void OnEnable()
+    {
         LevelStarted += OnLevelStarted;
         LevelStarted += StartRunning;
+    }
+    private void OnDisable()
+    {
+        LevelStarted -= OnLevelStarted;
+        LevelStarted -= StartRunning;
     }
     void OnLevelComplated()
     {

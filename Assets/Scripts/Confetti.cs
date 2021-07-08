@@ -3,8 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Confetti : MonoBehaviour
 {
-    void Start()
+    private void OnEnable()
     {
-        GameManager.LevelFinished += () => GetComponent<ParticleSystem>().Play();
+        GameManager.LevelFinished += PlayParticule;
+    }
+
+    private void PlayParticule()
+    {
+        GetComponent<ParticleSystem>().Play();
+    }
+
+    private void OnDisable()
+    {
+        GameManager.LevelFinished -= PlayParticule;
     }
 }

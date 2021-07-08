@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 [RequireComponent(typeof(InputControlller), typeof(MovementController), typeof(AnimationController))]
 public class CharacterManager : MonoBehaviour
 {
@@ -26,12 +27,11 @@ public class CharacterManager : MonoBehaviour
             print(i + "Value :" + value);
             characterState = value;
             i++;
-            //CharacterStateChanged?.Invoke(value);
+            CharacterStateChanged?.Invoke(value);
         }
     }
-    private void Start()
+    private void Reset()
     {
-        GameManager.LevelStarted += () => { print("Start Running"); };
         movementController = GetComponent<MovementController>();
         inputControlller = GetComponent<InputControlller>();
     }

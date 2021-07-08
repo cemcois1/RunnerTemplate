@@ -10,22 +10,40 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject Tap2Play;
     [SerializeField] private GameObject LevelFailed;
     [SerializeField] private GameObject LevelComplated;
-    private void Start()
+    [SerializeField] private GameObject ProgressBar;
+    private void OnEnable()
     {
+        GameManager.PrepareLevel += PrepareLevelUI;
         GameManager.LevelStarted += OnLevelStarted;
         GameManager.LevelFailed += OnLevelFailed;
         GameManager.LevelFinished += OnLevelEnded;
     }
-
+    private void OnDisable()
+    {
+        GameManager.PrepareLevel -= PrepareLevelUI;
+        GameManager.LevelStarted -= OnLevelStarted;
+        GameManager.LevelFailed -= OnLevelFailed;
+        GameManager.LevelFinished -= OnLevelEnded;
+    }
+    private void PrepareLevelUI()
+    {
+        LevelComplated.SetActive(false);
+        LevelFailed.SetActive(false);
+        Tap2Play.SetActive(true);
+        //TODO set progress bar
+    }
 
     #region Event Methods
     public void LoadNextLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        GameManager.PrepareLevel?.Invoke();
     }
     public void LoadCurrentLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GameManager.PrepareLevel?.Invoke();
+
     }
     public void OnLevelStarted()
     {

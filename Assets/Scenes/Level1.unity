@@ -689,8 +689,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac42108d298fe9847a963b9315c8be70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particules: []
-  mainCamera: {fileID: 0}
 --- !u!65 &608957192
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -903,6 +901,7 @@ MonoBehaviour:
   Tap2Play: {fileID: 385648580}
   LevelFailed: {fileID: 1538041067}
   LevelComplated: {fileID: 671666559}
+  ProgressBar: {fileID: 0}
 --- !u!114 &662106195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1403,6 +1402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smoothSpeed: 5
+  playerPosition: {fileID: 5023599162756457938}
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2874,9 +2874,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slideSpeed: 15
-  forwardSpeed: 5
+  forwardSpeed: 10
   BounceRight: 3
   BounceLeft: -3
+  inputControlller: {fileID: 5023599162756457940}
 --- !u!114 &5023599162756457940
 MonoBehaviour:
   m_ObjectHideFlags: 0

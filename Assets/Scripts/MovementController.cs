@@ -17,15 +17,26 @@ public class MovementController : MonoBehaviour
 
 
     private Coroutine Runningcoroutine;
-    private InputControlller inputControlller;
-    private void Start()
+    [SerializeField]private InputControlller inputControlller;
+
+    private void OnEnable()
     {
-        inputControlller = GetComponent<InputControlller>();
+
         inputControlller.OnMousePositionChanged += MoveXAxis;
         GameManager.LevelStarted += MoveForward;
         GameManager.LevelFinished += StopRunning;
         GameManager.LevelFailed += StopRunning;
-
+    }
+    private void OnDisable()
+    {
+        inputControlller.OnMousePositionChanged -= MoveXAxis;
+        GameManager.LevelStarted -= MoveForward;
+        GameManager.LevelFinished -= StopRunning;
+        GameManager.LevelFailed -= StopRunning;
+    }
+    private void Reset()
+    {
+        inputControlller = GetComponent<InputControlller>();
     }
     public void MoveForward()
     {
@@ -35,10 +46,6 @@ public class MovementController : MonoBehaviour
     {
         StopCoroutine(Runningcoroutine);
         print("Character Stopped");
-    }
-    private void deneme()
-    {
-        print("MovementController Test Message ");
     }
     public IEnumerator MoveCoroutine()
     {

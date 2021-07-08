@@ -5,19 +5,34 @@ public class CameraFollow : MonoBehaviour
 {
     private Coroutine cameraFollow;
     private Vector3 offset;
-    [SerializeField] private float smoothSpeed;
-    private GameObject playerPosition;
-
+    [SerializeField] private float smoothSpeed = 5;
+    [Space]
+    [Header("For Testing")]
+    [SerializeField] private GameObject playerPosition;
+    private void Reset()
+    {
+        playerPosition = GameObject.FindGameObjectWithTag("Player");
+    }
 
     private void Start()
+    {
+
+        offset = playerPosition.transform.position - transform.position;
+        cameraFollow = StartCoroutine(FollowPlayer());
+    }
+    private void OnEnable()
     {
         #region Events
         GameManager.LevelFinished += DontFollowPlayer;
         GameManager.LevelFailed += DontFollowPlayer;
         #endregion
-        playerPosition = GameObject.FindGameObjectWithTag("Player");
-        offset = playerPosition.transform.position - transform.position;
-        cameraFollow = StartCoroutine(FollowPlayer());
+    }
+    private void OnDisable()
+    {
+        #region Events Disable
+        GameManager.LevelFinished -= DontFollowPlayer;
+        GameManager.LevelFailed -= DontFollowPlayer;
+        #endregion
     }
     private IEnumerator FollowPlayer()
     {

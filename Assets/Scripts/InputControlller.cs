@@ -11,12 +11,22 @@ public class InputControlller : MonoBehaviour
     private Vector3 startPosition = Vector3.zero;
     private Vector3 currentPosition = Vector3.zero;
     private bool IsInputTakeable = false;
-    private void Start()
+    private void OnEnable()
     {
-        GameManager.LevelFinished += () => this.enabled = false;
-        GameManager.LevelFailed += () => this.enabled = false;
+        GameManager.LevelFinished += OpenInputController;
+        GameManager.LevelFailed += OpenInputController;
+
+    }
+    private void OnDisable()
+    {
+        GameManager.LevelFinished -= OpenInputController;
+        GameManager.LevelFailed -= OpenInputController;
     }
 
+    private void OpenInputController()
+    {
+        this.enabled = false;
+    }
     private void Update()
     {
         TakeInput();
